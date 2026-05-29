@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting…</title>
+<style>
+  body { margin: 0; background: #f2f2f7; font-family: -apple-system, sans-serif;
+         display: flex; align-items: center; justify-content: center; height: 100vh; }
+  p { color: #8e8e93; font-size: 15px; }
+</style>
+</head>
+<body>
+<p>Opening…</p>
+<script>
+  // Read the card code from the URL hash (e.g. justadadgaming.github.io/#2D)
+  var code = window.location.hash.replace('#', '').trim();
+
+  if (code) {
+    // Redirect to the app via custom URL scheme
+    window.location.href = 'magicprediction://set?p=' + encodeURIComponent(code);
+
+    // Fallback message after 1.5s if app isn't installed
+    setTimeout(function() {
+      document.querySelector('p').textContent = 'App not found. Make sure Magic Prediction is installed.';
+    }, 1500);
+  } else {
+    document.querySelector('p').textContent = '';
+  }
+</script>
+</body>
+</html>
